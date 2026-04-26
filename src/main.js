@@ -12,8 +12,6 @@ import { GameOver }       from './scenes/GameOver.js';
 
 const config = {
   type: Phaser.CANVAS,
-  width:  GAME_WIDTH,
-  height: GAME_HEIGHT,
   parent: 'game-container',
   backgroundColor: '#000000',
   pixelArt: true,
@@ -22,14 +20,16 @@ const config = {
   scale: {
     mode:       Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    width:      GAME_WIDTH,
+    height:     GAME_HEIGHT,
   },
 
-  physics: {
-    // We use custom physics; Phaser Arcade is not needed
+  audio: {
+    noAudio: true,
   },
 
   input: {
-    activePointers: 4, // multi-touch support
+    activePointers: 4,
   },
 
   scene: [Boot, Preload, MainMenu, Game, HUDScene, InventoryScene, CraftingScene, FurnaceScene, GameOver],
@@ -38,4 +38,11 @@ const config = {
 // Suppress context menu on right-click
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-new Phaser.Game(config);
+try {
+  new Phaser.Game(config);
+} catch (err) {
+  const el = document.createElement('div');
+  el.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:#111;color:#ff5555;font:13px/1.5 monospace;padding:16px;overflow:auto;z-index:99999;white-space:pre-wrap;word-break:break-all';
+  el.textContent = 'PHASER INIT ERROR\n' + err.message + '\n\n' + (err.stack || '');
+  document.body.appendChild(el);
+}

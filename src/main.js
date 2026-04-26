@@ -11,7 +11,7 @@ import { FurnaceScene }   from './scenes/FurnaceScene.js';
 import { GameOver }       from './scenes/GameOver.js';
 
 const config = {
-  type: Phaser.AUTO,
+  type: Phaser.CANVAS,
   width:  GAME_WIDTH,
   height: GAME_HEIGHT,
   parent: 'game-container',

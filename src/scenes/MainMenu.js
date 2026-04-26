@@ -79,8 +79,10 @@ export class MainMenu extends Phaser.Scene {
   _buildBackground(W, H) {
     // Sky gradient (layers)
     const sky = this.add.graphics();
-    sky.fillGradientStyle(0x0a1a3a, 0x0a1a3a, 0x1a4480, 0x1a4480, 1);
-    sky.fillRect(0, 0, W, H * 0.7);
+    sky.fillStyle(0x0a1a3a, 1);
+    sky.fillRect(0, 0, W, H * 0.5);
+    sky.fillStyle(0x0e2a5a, 1);
+    sky.fillRect(0, H * 0.5, W, H * 0.2);
     sky.fillStyle(0x1a3a10, 1);
     sky.fillRect(0, H * 0.7, W, H * 0.3);
 

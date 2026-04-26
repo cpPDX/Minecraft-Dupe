@@ -12,8 +12,6 @@ import { GameOver }       from './scenes/GameOver.js';
 
 const config = {
   type: Phaser.CANVAS,
-  width:  GAME_WIDTH,
-  height: GAME_HEIGHT,
   parent: 'game-container',
   backgroundColor: '#000000',
   pixelArt: true,
@@ -22,14 +20,16 @@ const config = {
   scale: {
     mode:       Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
+    width:      GAME_WIDTH,
+    height:     GAME_HEIGHT,
   },
 
-  physics: {
-    // We use custom physics; Phaser Arcade is not needed
+  audio: {
+    noAudio: true,
   },
 
   input: {
-    activePointers: 4, // multi-touch support
+    activePointers: 4,
   },
 
   scene: [Boot, Preload, MainMenu, Game, HUDScene, InventoryScene, CraftingScene, FurnaceScene, GameOver],

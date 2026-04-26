@@ -105,6 +105,11 @@ export class Game extends Phaser.Scene {
     this.controls = new TouchControls(this);
     this._setupKeyboard();
 
+    // Launch HUD in parallel (must come after systems are ready)
+    if (!this.scene.isActive('HUDScene')) {
+      this.scene.launch('HUDScene');
+    }
+
     // Mobs and drops
     this.mobs  = [];
     this.drops = [];
@@ -504,8 +509,11 @@ export class Game extends Phaser.Scene {
       this.spawnDrop(this.player.x + this.player.w / 2, this.player.y + this.player.h / 2, d.itemId, d.count);
     }
     this.time.delayedCall(1200, () => {
-      this.scene.start('GameOver');
       this.scene.stop('HUDScene');
+      this.scene.stop('InventoryScene');
+      this.scene.stop('CraftingScene');
+      this.scene.stop('FurnaceScene');
+      this.scene.start('GameOver');
     });
   }
 

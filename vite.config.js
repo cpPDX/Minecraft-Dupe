@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/Minecraft-Dupe/',
+  base: './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

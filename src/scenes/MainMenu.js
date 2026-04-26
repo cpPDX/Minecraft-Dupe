@@ -72,8 +72,8 @@ export class MainMenu extends Phaser.Scene {
   _startGame(newGame) {
     const saveData = newGame ? null : this.save.load();
     const seed = saveData?.seed ?? Math.floor(Math.random() * 1e9);
-    this.scene.start('Game',    { seed, saveData, newGame });
-    this.scene.start('HUDScene');
+    this.scene.start('Game', { seed, saveData, newGame });
+    // HUDScene is launched from Game.create() so it gets proper scene context
   }
 
   _buildBackground(W, H) {

@@ -29,8 +29,8 @@ export class GameOver extends Phaser.Scene {
     this.time.delayedCall(1400, () => {
       this._btn(W / 2, H * 0.64, 'Respawn', 0x44aa44, () => {
         save.deleteSave();
-        this.scene.start('Game',    { newGame: true });
-        this.scene.start('HUDScene');
+        this.scene.start('Game', { newGame: true });
+        // HUDScene is launched from Game.create()
       });
       this._btn(W / 2, H * 0.64 + 60, 'Main Menu', 0x4477cc, () => {
         save.deleteSave();
